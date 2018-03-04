@@ -1,27 +1,22 @@
 Awesome Bootstrap Checkbox
 ==========================
 
-Font Awesome Bootstrap Checkboxes &amp; Radios plugin. Pure css way to make inputs look prettier. **No javascript**!
+[![NPM version](https://img.shields.io/npm/v/awesome-bootstrap-checkbox.svg?style=flat)](https://www.npmjs.com/package/awesome-bootstrap-checkbox)
+[![NPM downloads](https://img.shields.io/npm/dm/awesome-bootstrap-checkbox.svg?style=flat)](https://www.npmjs.com/package/awesome-bootstrap-checkbox)
+[![Dependency Status](https://img.shields.io/david/dev/flatlogic/awesome-bootstrap-checkbox.svg?branch=master&style=flat)](https://www.npmjs.com/package/awesome-bootstrap-checkbox)
+[![Join the chat at https://gitter.im/flatlogic/awesome-bootstrap-checkbox](https://badges.gitter.im/flatlogic/awesome-bootstrap-checkbox.svg)](https://gitter.im/flatlogic/awesome-bootstrap-checkbox?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-**[Demo](http://awesome-bootstrap-checkbox.okendoken.com/demo/index.html)**
+[Font Awesome][] [Bootstrap][] Checkboxes & Radios plugin. Pure CSS way to make inputs look prettier. **No Javascript!**
 
+For **[Bootstrap 4 Beta version][]** please checkout [bump-to-bootstrap4][] branch!
 
-Repository moved. Update your urls!
-------------
-
-We have transferred Awesome Bootstrap Checkbox to a new location under our organization account - https://github.com/flatlogic/awesome-bootstrap-checkbox. Though Gihub provides
-redirects from old urls, we strongly recommend updating any existing local clones to point to the new repository URL. You can
-do this by using `git remote` on the command line:
-
-````bash
-git remote set-url origin https://github.com/flatlogic/awesome-bootstrap-checkbox.git
-````
+**[Demo][]**
 
 Use
 ------------
 
-First just include **awesome-bootstrap-checkbox.css** somewhere in your html. Or **awesome-bootstrap-checkbox.scss** if you use sass.
-Next everything is based on code convention. Here is checkbox markup from Bootstrap site:
+First just include **awesome-bootstrap-checkbox.css** somewhere in your HTML, or add the equivalent files to your [Sass](#using-sass) / [Less](#using-less) configuration.
+Next, everything is based on code convention. Here is checkbox markup from Bootstrap site:
 
 ````html
 <form role="form">
@@ -50,6 +45,21 @@ We have to alter it a bit:
 ````
 That's it. It will work. But it **will not** work if you nest input inside label or put label before input.
 
+If you want to enable **Opera 12** and earlier support  just add class `styled` to `input` element:
+````html
+...
+<input type="checkbox" id="checkbox1" class="styled">
+...
+````
+
+Browser support
+-----------
+- Firefox (_3.6+_)
+- Chrome  (_14+_)
+- IE      (_9+_)
+- Opera   (_11.6+_)
+- Safari  (_6+_)
+
 Radios
 ------------
 
@@ -73,22 +83,86 @@ It's the same for radios. Markup has to be the following:
 </form>
 ````
 
-Brand Colors
+Brand Colors and other features
 ------------
 
 You may use `checkbox-primary`, `checkbox-danger`, `radio-info`, etc to style checkboxes and radios with brand bootstrap colors.
 
 `checkbox-circle` is for rounded checkboxes.
 
-Glyphicons way (Opt-out Font Awesome)
+Inputs without label text:
+
+````html
+<div class="checkbox">
+  <input type="checkbox" class="styled" id="singleCheckbox1" value="option1" aria-label="Single checkbox One">
+  <label></label>
+</div>
+````
+
+Using [Sass][]
+----------
+
+As per example in the `demo` folder, to use Font Awesome you'll have to `@import` the following library parts:
+
+````scss
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/variables";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins";
+
+@import "../bower_components/Font-Awesome/scss/variables";
+
+@import "../awesome-bootstrap-checkbox";
+````
+
+Adjust this to the path where your bootstrap and font-awesome files are located.
+
+Using [Less][]
+----------
+
+Just like the Sass setup, you'll have to `@import` the following library parts:
+
+````less
+@import "../bower_components/bootstrap/less/variables";
+@import "../bower_components/bootstrap/less/mixins";
+
+@import "../awesome-bootstrap-checkbox";
+
+@import "../bower_components/Font-Awesome/less/variables";
+````
+
+Custom icon font
 ------------
 
-If you want to use glyphicons instead of font-awesome then override `.checkbox` class:
+If you want to use another icon font instead of Font Awesome, such as [Glyphicons][], override the default variables:
+````scss
+$font-family-icon: 'Glyphicons Halflings';
+$check-icon: "\e013";
+
+.checkbox label:after {
+    padding-left: 4px;
+    padding-top: 2px;
+    font-size: 9px;
+}
+````
+
+or for Less:
+````less
+@font-family-icon: 'Glyphicons Halflings';
+@check-icon: "\e013";
+
+// Same styles as the Sass example...
+````
+
+Or for plain CSS, override the `.checkbox` class (and `.styled` class for Opera):
 ````css
+input[type="checkbox"].styled:checked + label:after,
+input[type="radio"].styled:checked + label:after,
 .checkbox input[type=checkbox]:checked + label:after {
     font-family: 'Glyphicons Halflings';
     content: "\e013";
 }
+
+input[type="checkbox"].styled:checked label:after,
+input[type="radio"].styled:checked label:after,
 .checkbox label:after {
     padding-left: 4px;
     padding-top: 2px;
@@ -99,4 +173,15 @@ If you want to use glyphicons instead of font-awesome then override `.checkbox` 
 Credits
 ------------
 
-Based on [Official Bootstrap Sass port](https://github.com/twbs/bootstrap-sass) and awesome [Font Awesome](https://github.com/FortAwesome/Font-Awesome).
+Based on the [Official Bootstrap Sass port][Bootstrap Sass] and the awesome [Font Awesome][].
+
+
+[Demo]: http://flatlogic.github.io/awesome-bootstrap-checkbox/demo/
+[Bootstrap]: http://getbootstrap.com/
+[Bootstrap 4 Beta version]: https://getbootstrap.com/
+[bump-to-bootstrap4]: https://github.com/flatlogic/awesome-bootstrap-checkbox/tree/bump-to-bootstrap4
+[Bootstrap Sass]: https://github.com/twbs/bootstrap-sass
+[Font Awesome]: https://github.com/FortAwesome/Font-Awesome
+[Glyphicons]: http://getbootstrap.com/components/#glyphicons
+[Sass]: http://sass-lang.com/
+[Less]: http://lesscss.org/
